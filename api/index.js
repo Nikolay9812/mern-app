@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import userRoutes from './routes/user.route.js'
 import authRoutes from './routes/auth.route.js'
+import postRutes from './routes/post.route.js'
 import cookieParser from 'cookie-parser'
 
 dotenv.config()
@@ -22,8 +23,9 @@ app.listen(3000, () => {
 
 app.use('/api/user', userRoutes)
 app.use('/api/auth', authRoutes)
+app.use('/api/post', postRutes)
 
-app.use((err,req, res, next) => {
+app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500
     const message = err.message || 'Iternal Server Error'
     res.status(statusCode).json({
